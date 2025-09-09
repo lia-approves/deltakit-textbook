@@ -8,7 +8,6 @@ version = "0.0.1"
 extensions = [
     "myst_nb",
     "sphinx_copybutton",
-    "sphinx_book_theme",
     "sphinx.ext.intersphinx",
     "sphinx.ext.autodoc",
     "sphinx.ext.viewcode",
@@ -44,30 +43,14 @@ exclude_patterns = [
 # The theme to use for HTML and HTML Help pages.  See the documentation for
 # a list of builtin themes.
 #
-html_title = ""
-html_theme = "sphinx_book_theme"
-# html_logo = "_static/logo-wide.svg"
-# html_favicon = "_static/logo-square.svg"
+html_title = "Deltakit Textbook"
+html_theme = "sphinxawesome_theme"
+html_permalinks_icon = '<span>#</span>'
+html_favicon = "logo/deltakit_favicon.png"
+
 html_theme_options = {
-    "github_url": "https://github.com/deltakit/deltakit-textbook",
-    "repository_url": "https://github.com/deltakit/deltakit-textbook",
-    "repository_branch": "main",
-    "home_page_in_toc": True,
-    "path_to_docs": "docs",
-    "show_navbar_depth": 1,
-    "collapse_navigation": True,
-    "use_edit_page_button": True,
-    "use_repository_button": True,
-    "use_download_button": True,
-    "launch_buttons": {
-        "binderhub_url": "https://mybinder.org",
-        "notebook_interface": "classic",
-    },
-    "navigation_with_keys": False,
-    # Move page ToC into the left sidebar and remove the right one
-    "show_nav_level": 2,
-    "show_toc_level": 3,
-    "secondary_sidebar_items": [],  # hide right sidebar
+    "logo_light": "logo/deltakit_favicon.png",
+    "logo_dark": "logo/deltakit_favicon.png",
 }
 
 # Add any paths that contain custom static files (such as style sheets) here,
@@ -76,12 +59,6 @@ html_theme_options = {
 html_static_path = ["_static"]
 templates_path = ["_templates"]
 html_css_files = ["overrides.css"]
-html_sidebars = {
-    "**": [
-        "sbt-sidebar-nav.html",
-        "page-toc.html",   # ← moves "On this page" into the left sidebar
-    ]
-}
 
 copybutton_selector = "div:not(.output) > div.highlight pre"
 
@@ -93,6 +70,16 @@ nitpick_ignore = [
     ("py:class", "_io.StringIO"),
     ("py:class", "_io.BytesIO"),
 ]
+
+# Configure MathJax v3
+mathjax3_config = {
+    "tex": {
+        "packages": {"[+]": ["physics"]}  # Add the physics package
+    },
+    "loader": {
+        "load": ["[tex]/physics"]         # Load physics extension
+    }
+}
 
 always_document_param_types = True
 jupyter_execute_notebooks = 'off'
